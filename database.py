@@ -2,7 +2,7 @@ import os
 
 from dotenv import load_dotenv
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.ext.declarative import declarative_base
 from typing import AsyncGenerator
 
 
@@ -10,12 +10,11 @@ load_dotenv()
 
 DATABASE_URL = os.getenv('DATABASE_URL')
 
-engine = create_async_engine(DATABASE_URL, echo=True)
+engine = create_async_engine(DATABASE_URL)
+
 AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False)
 
-
-class Base(DeclarativeBase):
-    pass
+Base = declarative_base()
 
 
 async def get_db_session() -> AsyncGenerator[AsyncSessionLocal, None]:
