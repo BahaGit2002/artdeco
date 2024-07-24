@@ -18,9 +18,6 @@ __pycache__/
 .coverage
 .hypothesis/
 
-# Alembic migration files (if you don't want to include them)
-alembic_version
-alembic.ini
 
 # Logs and temporary files
 *.log
