@@ -1,0 +1,31 @@
+# Virtual environment
+venv/
+env/
+
+# Configuration files with sensitive information
+.env
+
+# Cache and build
+__pycache__/
+*.pyc
+*.pyo
+
+# Build and test tools
+.pytest_cache/
+.mypy_cache/
+.tox/
+.nox/
+.coverage
+.hypothesis/
+
+# Alembic migration files (if you don't want to include them)
+alembic_version
+alembic.ini
+
+# Logs and temporary files
+*.log
+
+# IDEs/editors
+.vscode/
+.idea/
+*.swp
