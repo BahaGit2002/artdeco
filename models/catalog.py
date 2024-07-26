@@ -16,6 +16,9 @@ class Catalog(Base):
     image_url: Mapped[str] = mapped_column(String(255), nullable=True)
     images = relationship("CatalogImage", back_populates="catalog")
 
+    def __str__(self):
+        return f'{self.code}'
+
 
 class CatalogImage(Base):
     __tablename__ = 'catalog_image'
