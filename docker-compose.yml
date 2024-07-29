@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   web:
     build: .
@@ -22,6 +20,13 @@ services:
       - POSTGRES_PASSWORD=${DB_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
+  test:
+    build: .
+    command: sh -c "poetry run pytest tests"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres_2:postgres@db:5432/art_deco
 
 volumes:
   postgres_data:

@@ -29,4 +29,4 @@ COPY .env ./.env
 EXPOSE 8000
 
 # Command to launch the application
-CMD ["./wait-for-it.sh", "db:5432", "--", "sh", "-c", "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000"]
+CMD ["poetry", "run", "pytest", "tests", "db:5432", "--", "sh", "-c", "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 8000"]
