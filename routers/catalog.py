@@ -25,7 +25,7 @@ async def catalog_list(
     return paginate(items)
 
 
-@router.get("/detail/{pk}")
+@router.get("/detail/{pk}", response_model=CatalogDetail)
 async def catalog_detail(
         pk: int,
         session: AsyncSession = Depends(get_db_session)

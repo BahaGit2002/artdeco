@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional, List
 
 
@@ -6,8 +6,9 @@ class PortfolioImageBase(BaseModel):
     id: int
     image_url: Optional[str] = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(
+        from_attributes=True
+    )
 
 
 class PortfolioList(BaseModel):
@@ -20,8 +21,9 @@ class PortfolioList(BaseModel):
     image_url: str
     images: List[PortfolioImageBase] = []
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(
+        from_attributes=True
+    )
 
 
 class PortfolioDetail(BaseModel):
@@ -35,5 +37,6 @@ class PortfolioDetail(BaseModel):
     description: str
     images: List[PortfolioImageBase] = []
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(
+        from_attributes=True
+    )

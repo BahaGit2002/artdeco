@@ -1,7 +1,7 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
+from fastapi_pagination import Page, paginate
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
-from fastapi_pagination import Page, paginate
 from sqlalchemy.orm import joinedload
 
 from database import get_db_session
@@ -43,5 +43,8 @@ async def portfolio_list(
     result = await session.execute(query)
 
     item = result.scalars().first()
+
+    if item is None:
+        raise HTTPException(status_code=404, detail="Catalog item not found")
 
     return item
