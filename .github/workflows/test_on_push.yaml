@@ -63,6 +63,12 @@ jobs:
       - name: Install dependencies
         run: poetry install
 
+      - name: Print Environment Variables
+        run: |
+          echo "DB_NAME=${{ secrets.DB_NAME }}"
+          echo "DB_USER=${{ secrets.DB_USER }}"
+          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}"
+
       - name: Build Docker images
         run: docker-compose -f docker-compose.yml build
 
