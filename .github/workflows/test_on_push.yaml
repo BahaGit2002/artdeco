@@ -16,7 +16,7 @@ jobs:
         image: postgres:13
         env:
           POSTGRES_DB: art_deco
-          POSTGRES_USER: postgres_2
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
