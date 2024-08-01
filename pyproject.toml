@@ -6,7 +6,7 @@ authors = ["baha <baktiarzaksylykov22@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.11"
+python = ">=3.11,<3.12"
 fastapi = "^0.111.1"
 uvicorn = "^0.30.3"
 pydantic = "^2.8.2"
