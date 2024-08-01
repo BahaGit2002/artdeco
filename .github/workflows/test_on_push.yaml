@@ -16,7 +16,7 @@ jobs:
         image: postgres:13
         env:
           POSTGRES_DB: art_deco
-          POSTGRES_USER: postgres
+          POSTGRES_USER: postgres_2
           POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
@@ -43,4 +43,8 @@ jobs:
         run: docker-compose -f docker-compose.yml build
 
       - name: Run tests
+        env:
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         run: docker-compose -f docker-compose.yml run test
