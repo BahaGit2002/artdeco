@@ -33,14 +33,22 @@ jobs:
       - name: Show Python version
         run: python --version
 
-      - name: Install Docker
+      - name: Clean up package dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y docker.io
+          sudo apt-get remove -y containerd containerd.io
+          sudo apt-get autoremove -y
+          sudo apt-get clean
 
-      - name: Install Docker Compose
+      - name: Install Docker and Docker Compose
         run: |
-          sudo curl -v -L "https://github.com/docker/compose/releases/download/2.20.2/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
+          sudo apt-get update
+          sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+          sudo apt-get update
+          sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+          sudo curl -L "https://github.com/docker/compose/releases/download/2.20.2/docker-compose-linux-x86_64" -o /usr/local/bin/docker-compose
           sudo chmod +x /usr/local/bin/docker-compose
           docker-compose --version
 
